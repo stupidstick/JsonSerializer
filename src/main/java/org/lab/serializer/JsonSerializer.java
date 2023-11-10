@@ -10,7 +10,6 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 
 public class JsonSerializer {
-
     private final Object serializableObj;
 
     public JsonSerializer(Object serializableObj) {
@@ -28,7 +27,7 @@ public class JsonSerializer {
 
         Field[] fields = findAnnotatedFields(clazz);
         for (Field field : fields) {
-            builder.append(convertFieldToString(field));
+            builder.append(serializeField(field));
 
             if (fields[fields.length - 1] != field) {
                 builder.append(',');
@@ -42,17 +41,17 @@ public class JsonSerializer {
 
 
 
-    private String convertFieldToString(Field field) throws IllegalAccessException {
+    private String serializeField(Field field) throws IllegalAccessException {
         field.setAccessible(true);
         if (field.getType().isArray()) {
-            return convertArrayFieldToString(field);
+            return serializeArrayField(field);
         }
         else {
-            return convertObjectFieldToString(field);
+            return serializeObjectField(field);
         }
     }
 
-    private String convertArrayFieldToString(Field arrayField) throws IllegalAccessException {
+    private String serializeArrayField(Field arrayField) throws IllegalAccessException {
         if (!(isValidType(arrayField.getType().getComponentType()) || isJsonSerializableAnnotated(arrayField.getType().getComponentType())))
             throw new NotJsonSerializableException(arrayField.getName() + " field must be serializable");
 
@@ -67,7 +66,7 @@ public class JsonSerializer {
         return builder.append("]").toString();
     }
 
-    private String convertObjectFieldToString(Field field) throws IllegalAccessException {
+    private String serializeObjectField(Field field) throws IllegalAccessException {
         if (!(isValidType(field.getType()) || isJsonSerializableAnnotated(field.getType())))
             throw new NotJsonSerializableException(field.getName() + " field must be serializable");
 

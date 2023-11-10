@@ -6,13 +6,13 @@ import org.lab.serializer.annotations.ToSerialize;
 
 @Data
 @JsonSerializable
-public class Person {
+public class Person{
     @ToSerialize
-    private String bebra = null;
+    private String str = null;
     @ToSerialize
-    private String name;
+    private String name = "AOC";
     @ToSerialize
-    private int age;
+    private int age = 12;
     @ToSerialize
     private Double dval = 5.5;
     @ToSerialize
@@ -20,9 +20,12 @@ public class Person {
     @ToSerialize
     private boolean bool = true;
 
-    @ToSerialize
-    private Dog dog;
+    private Integer iVal = 125;
 
     @ToSerialize
-    private Dog[] arr;
+    private Dog dog = new Dog("Volkodav", 12.5);
+
+    @ToSerialize
+    private Dog[] arr = {new Dog("Basya", 20), new Dog("Bobik", 10), new Dog("Muhtar", 13.5)};
 }
+

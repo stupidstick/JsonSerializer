@@ -8,7 +8,7 @@ import org.lab.serializer.annotations.ToSerialize;
 @JsonSerializable
 public class Dog {
     @ToSerialize
-    private String name;
-    private double weight;
-
+    private final String name;
+    private final double weight;
 }
+
