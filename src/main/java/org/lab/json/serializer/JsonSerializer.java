@@ -1,9 +1,9 @@
-package org.lab.serializer;
+package org.lab.json.serializer;
 
 import org.apache.commons.lang3.ClassUtils;
-import org.lab.serializer.annotations.JsonSerializable;
-import org.lab.serializer.annotations.ToSerialize;
-import org.lab.serializer.exceptions.NotJsonSerializableException;
+import org.lab.json.annotations.JsonSerializable;
+import org.lab.json.annotations.ToSerialize;
+import org.lab.json.serializer.exceptions.NotJsonSerializableException;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;

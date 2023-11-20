@@ -1,4 +1,4 @@
-package org.lab.serializer.annotations;
+package org.lab.json.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
