@@ -11,6 +11,7 @@ public class Main {
         Person person = new Person();
         JsonSerializer serializer = new JsonSerializer(person);
         System.out.println(serializer.serialize());
-
+        JsonDeserializer<String> deserializer = new JsonDeserializer<>(serializer.serialize());
+        deserializer.deserialize();
     }
 }

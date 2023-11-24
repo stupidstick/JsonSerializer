@@ -9,6 +9,7 @@ import org.lab.serializer.annotations.ToSerialize;
 public class Dog {
     @ToSerialize
     private final String name;
+    @ToSerialize
     private final double weight;
 }
 
