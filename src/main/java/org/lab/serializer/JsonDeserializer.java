@@ -4,7 +4,9 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class JsonDeserializer<T> {
+import static org.lab.serializer.JsonRegexPatterns.JSON_CONTENT_PATTERN;
+
+public class JsonDeserializer<T> {
     private String json;
 
 
@@ -18,18 +20,8 @@ class JsonDeserializer<T> {
         Matcher matcher = JSON_CONTENT_PATTERN.matcher(json);
         if (matcher.find()) {
             String content = matcher.group("content");
-            for (String splitByIndex : splitByIndices(content, findDelimiterIndices(content))) {
-                System.out.println(splitByIndex);
-            }
-        }
-        else {
-            System.out.println("Нихуя не найдено");;
+            Map<String, Object> map = JsonNodeConverter.convert(JsonContentParser.splitNodes(content).toArray(String[]::new));
+            System.out.println(map.get("arr"));
         }
     }
-
-    private Map<String, Object> convertNodesToMap() {
-
-    }
-
-
 }
