@@ -1,9 +1,9 @@
-package org.lab.serializer.exceptions;
+package org.lab.serializer.converters;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.lab.serializer.JsonContentParser;
-import org.lab.serializer.JsonNodeConverter;
 import org.lab.serializer.JsonRegexPatterns;
+import org.lab.serializer.exceptions.NotJsonFormatException;
 
 import java.util.regex.Matcher;
 

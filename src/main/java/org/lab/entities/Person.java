@@ -1,31 +1,38 @@
 package org.lab.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.lab.serializer.annotations.JsonSerializable;
 import org.lab.serializer.annotations.ToSerialize;
 
 @Data
 @JsonSerializable
+@AllArgsConstructor
+@NoArgsConstructor
 public class Person{
     @ToSerialize
-    private String str = null;
-    @ToSerialize
-    private String name = "AOC";
-    @ToSerialize
-    private int age = 12;
-    @ToSerialize
-    private Double dval = 5.5;
-    @ToSerialize
-    private short shortval = 10;
-    @ToSerialize
-    private boolean bool = true;
-
-    private Integer iVal = 125;
+    private int id;
 
     @ToSerialize
-    private Dog dog = new Dog("Volkodav", 12.5);
+    private String name;
 
     @ToSerialize
-    private Dog[] arr = {new Dog("Basya", 20), new Dog("Bobik", 10), new Dog("Muhtar", 13.5)};
+    private byte age;
+
+    @ToSerialize
+    private char gender;
+
+    @ToSerialize
+    private double weight;
+
+    @ToSerialize
+    private Dog dog;
+
+    @ToSerialize
+    private Dog[] dogs;
+
+    @ToSerialize
+    private int[] children;
 }
 

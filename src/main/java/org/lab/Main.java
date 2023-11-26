@@ -1,21 +1,35 @@
 package org.lab;
 
 
-import com.florianingerl.util.regex.Pattern;
+import org.lab.entities.Dog;
 import org.lab.entities.Person;
 import org.lab.serializer.JsonDeserializer;
 import org.lab.serializer.JsonSerializer;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IllegalAccessException {
-        Person person = new Person();
+        Dog dog1 = new Dog("Volkodav", 20.4);
+        Dog dog2 = new Dog("Bobik", 12.5);
+
+        Person person = new Person(
+                1,
+                "Kirill",
+                (byte) 19,
+                'M',
+                76.1,
+                dog1,
+                new Dog[] {dog1, dog2},
+                new int[] {5, 25}
+        );
         JsonSerializer serializer = new JsonSerializer(person);
-        System.out.println(serializer.serialize());
-        String string = "{\"str\":null,\"name\":\"AOC\",\"age\":12,\"dval\":5.5,\"shortval\":10,\"bool\":true,\"dog\":{\"name\":\"Volkodav\",\"weight\":12.5},\"arr\":[{\"name\":\"Basya\",\"weight\":20.0},{\"name\":\"Bobik\",\"weight\":10.0},{\"name\":\"Muhtar\",\"weight\":13.5}, 12.5]}";
-        JsonDeserializer<String> deserializer = new JsonDeserializer<>(string);
-        deserializer.deserialize();
+        String json = serializer.serialize();
+        System.out.println("original : " + person);
+        System.out.println("json : " + json);
+        JsonDeserializer deserializer = new JsonDeserializer(json, Person.class);
+        Object object = deserializer.deserialize();
+
+
+        System.out.println("deserializable object : " + object);
     }
 }

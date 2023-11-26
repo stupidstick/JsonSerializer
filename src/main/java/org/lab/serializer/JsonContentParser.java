@@ -1,6 +1,6 @@
 package org.lab.serializer;
 
-import org.lab.serializer.JsonDeserializer;
+import org.lab.serializer.exceptions.NotJsonFormatException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +50,9 @@ public class JsonContentParser {
                 depth--;
             if (depth == 0)
                 break;
+        }
+        if (i == content.length()) {
+            throw new NotJsonFormatException("Block " + content.substring(startIndex) + " not in JSON format");
         }
         return i;
     }
